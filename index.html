@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Google Classroom Courses</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://apis.google.com/">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/client.js?onload=callbackFunction"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div
+      id="g_id_onload"
+      data-client_id="296235127120-764s1kc7t7ocjcvbc3m79u8kgfs06or9.apps.googleusercontent.com"
+      data-callback="handleCredentialResponse"
+      data-auto_prompt="false"
+    ></div>
+    <div class="g_id_signin" data-type="standard"></div>
+    <p id="courses"></p>
+    <script src="main.js"></script>
+  </body>
+</html>
