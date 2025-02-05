@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://apis.google.com/ https://accounts.google.com/ https://www.gstatic.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/client.js?onload=callbackFunction"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -16,5 +17,7 @@
     <div class="g_id_signin" data-type="standard"></div>
     <p id="courses"></p>
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
   </body>
 </html>
