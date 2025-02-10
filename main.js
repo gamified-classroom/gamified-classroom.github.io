@@ -3,44 +3,34 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-document.addEventListener('DOMContentLoaded', function ()
-{
-  function handleCredentialResponse(response)
-    {
+document.addEventListener('DOMContentLoaded', function() {
+    function handleCredentialResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
-            try
-                { // Add a try-catch block
-                      const decodedToken = jwt_decode(response.credential);
-                            console.log("Decoded JWT ID token:", decodedToken);
-                                  console.log("User email:", decodedToken.email);
-                                        console.log("User name:", decodedToken.name);
-                                              console.log("User picture:", decodedToken.picture);
-                                                  }
-                                                      catch (error)
-                                                          {
-                                                                console.error("Error decoding JWT:", error);
-                                                                      console.log("Response:", response); // Log the full response for debugging
-                                                                          }
-                                                                            }
+        try { // Add a try-catch block
+            const decodedToken = jwt_decode(response.credential);
+            alert("Decoded JWT ID token:", decodedToken);
+            console.log("User email:", decodedToken.email);
+            console.log("User name:", decodedToken.name);
+            console.log("User picture:", decodedToken.picture);
+        } catch (error) {
+            console.error("Error decoding JWT:", error);
+            console.log("Response:", response); // Log the full response for debugging
+        }
+    }
 
-                                                                              try
-                                                                                { // Try-catch for GSI initialization
-                                                                                    google.accounts.id.initialize(
-                                                                                        {
-                                                                                              client_id: '296235127120-764s1kc7t7ocjcvbc3m79u8kgfs06or9.apps.googleusercontent.com', // Replace with your client ID
-                                                                                                    callback: handleCredentialResponse
-                                                                                                        });
+    try { // Try-catch for GSI initialization
+        google.accounts.id.initialize({
+            client_id: '296235127120-764s1kc7t7ocjcvbc3m79u8kgfs06or9.apps.googleusercontent.com', // Replace with your client ID
+            callback: handleCredentialResponse
+        });
 
-                                                                                                            google.accounts.id.renderButton(
-                                                                                                                  document.getElementById("signInDiv"),
-                                                                                                                        {
-                                                                                                                                theme: "outline",
-                                                                                                                                        size: "large"
-                                                                                                                                              }
-                                                                                                                                                  );
-                                                                                                                                                    }
-                                                                                                                                                      catch (error)
-                                                                                                                                                        {
-                                                                                                                                                            console.error("Error initializing or rendering GSI:", error);
-                                                                                                                                                              }
-                                                                                                                                                              a});
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"), {
+                theme: "outline",
+                size: "large"
+            }
+        );
+    } catch (error) {
+        console.error("Error initializing or rendering GSI:", error);
+    }
+});
