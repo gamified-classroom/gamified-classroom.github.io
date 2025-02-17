@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         )
 
-        google.accounts.id.prompt();
-        
     } catch (error) {
         console.error("Error initializing or rendering GSI:", error)
     }
