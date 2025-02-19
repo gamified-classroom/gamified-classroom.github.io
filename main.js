@@ -18,6 +18,7 @@ function handleCredentialResponse(response) {
     console.log("User email:", decodedToken.email);
     console.log("User name:", decodedToken.name);
     console.log("User picture:", decodedToken.picture);
+    getAccessToken()
   } catch (error) {
     console.error("Error decoding JWT:", error);
     console.log("Response:", response);
