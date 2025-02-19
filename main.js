@@ -1,3 +1,8 @@
+//https://www.googleapis.com/auth/classroom.coursework.me.readonly
+//https://www.googleapis.com/auth/userinfo.profile
+//https://www.googleapis.com/auth/userinfo.email
+//https://www.googleapis.com/auth/classroom.rosters.readonly
+
 // Decoder for Google Data (decodes a JWT)
 function decode(token) {
   const arrayToken = token.split('.');
@@ -22,15 +27,6 @@ function handleCredentialResponse(response) {
     console.error("Error decoding JWT:", error);
     console.log("Response:", response);
   }
-}
-
-// Initialize Google Identity Services for Sign-In (ID Token)
-function initializeGoogleID() {
-  google.accounts.id.initialize({
-    client_id: '296235127120-764s1kc7t7ocjcvbc3m79u8kgfs06or9.apps.googleusercontent.com',
-    callback: handleCredentialResponse
-  });
-  google.accounts.id.prompt(); // Automatically show the sign-in popup
 }
 
 // Initialize Google Identity Services for OAuth2 Access Token
@@ -58,6 +54,5 @@ function getAccessToken() {
 
 // Auto-run when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-  initializeGoogleID(); // Initialize Google Sign-In
-  getAccessToken()
+  getAccessToken(); // Obtain access token
 });
