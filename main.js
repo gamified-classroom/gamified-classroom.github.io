@@ -1,3 +1,11 @@
+// Decoder for Google Data
+function jwt_decode() {
+  const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+  const arrayToken = token.split('.');
+  
+  return JSON.parse(atob(arrayToken[1]));
+}
+
 // Initialize Supabase client
 const supabaseUrl = 'https://isyodevlgpglibltgyng.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzeW9kZXZsZ3BnbGlibHRneW5nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NjQ0MzcsImV4cCI6MjA1NDE0MDQzN30.JOocGXpDTmGaHZh33OQ4BBnNrKFEKtQmBJTDVTB3tFo';
