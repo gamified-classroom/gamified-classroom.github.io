@@ -1,6 +1,5 @@
 // Decoder for Google Data
-function jwt_decode() {
-  const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+function decode(token) {
   const arrayToken = token.split('.');
   
   return JSON.parse(atob(arrayToken[1]));
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
     try {
-      const decodedToken = jwt_decode(response.credential);
+      const decodedToken = decode(response.credential);
       // Display the decoded token in an alert (formatted as a JSON string)
       alert("Decoded JWT ID token: " + JSON.stringify(decodedToken, null, 2));
       console.log("User email:", decodedToken.email);
