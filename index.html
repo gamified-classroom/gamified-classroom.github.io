@@ -2,47 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Google Login Popup</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://apis.google.com/ https://accounts.google.com/ https://www.gstatic.com;">
+    <title>Google Classroom Courses</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://apis.google.com/ https://accounts.google.com/ https://www.gstatic.com https://cdn.jsdelivr.net/npm/eruda https://unpkg.com/@supabase/supabase-js@2">
     <meta http-equiv="Cross-Origin-Opener-Policy" content="allow-popups" />
     <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <!-- This div will render the Google Sign-In button -->
+    <!-- Container for the Google Sign-In button -->
     <div id="signInDiv"></div>
+    <p id="courses"></p>
+
+    <!-- External libraries -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/client.js?onload=callbackFunction"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     
+    <!-- Your external JavaScript file -->
+    <script src="main.js"></script>
+    
+    <!-- Initialize eruda -->
     <script>
-      function handleCredentialResponse(response) {
-        console.log("Encoded JWT ID token:", response.credential);
-        try {
-          // Decode the JWT if needed using a library like jwt-decode.
-          // For example: const decodedToken = jwt_decode(response.credential);
-          // Then process the decoded token as required.
-          alert("Signed in successfully. Check the console for details.");
-        } catch (error) {
-          console.error("Error decoding JWT:", error);
-        }
-      }
-      
-      document.addEventListener("DOMContentLoaded", function() {
-        try {
-          // Initialize Google Identity Services with popup mode
-          google.accounts.id.initialize({
-            client_id: '296235127120-764s1kc7t7ocjcvbc3m79u8kgfs06or9.apps.googleusercontent.com',
-            callback: handleCredentialResponse,
-            ux_mode: 'popup' // This ensures the default popup flow is used.
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            { theme: "outline", size: "large" }
-          );
-          // Optionally, you can call google.accounts.id.prompt() to show the One Tap prompt.
-          // google.accounts.id.prompt();
-        } catch (error) {
-          console.error("Error initializing or rendering Google Identity Services:", error);
-        }
-      });
+      eruda.init();
     </script>
   </body>
 </html>
