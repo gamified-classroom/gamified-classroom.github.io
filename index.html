@@ -1,25 +1,41 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Google Classroom Courses</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://apis.google.com/ https://accounts.google.com/ https://www.gstatic.com https://cdn.jsdelivr.net/npm/eruda https://unpkg.com/@supabase/supabase-js@2">
+    <meta charset="UTF-8" />
+    <title>Google Login Popup Example</title>
+    <!-- Use your own CSP meta tag as needed -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://apis.google.com/ https://accounts.google.com/ https://www.gstatic.com;">
     <meta http-equiv="Cross-Origin-Opener-Policy" content="allow-popups" />
     <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://apis.google.com/js/client.js?onload=callbackFunction"></script>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div
-      id="g_id_onload"
-      data-client_id="296235127120-764s1kc7t7ocjcvbc3m79u8kgfs06or9.apps.googleusercontent.com"
-      data-callback="handleCredentialResponse"
-      data-auto_prompt="false"
-    ></div>
-    <div class="g_id_signin" data-type="standard"></div>
-    <p id="courses"></p>
-    <script src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
+    <button id="loginButton">Login with Google</button>
+    <div id="result"></div>
+
+    <script>
+      // When the login button is clicked, open the popup window.
+      document.getElementById("loginButton").addEventListener("click", function () {
+        const popup = window.open(
+          "popup.html",
+          "googleLogin",
+          "width=500,height=600"
+        );
+        if (!popup) {
+          alert("Popup blocked. Please allow popups for this site.");
+        }
+      });
+
+      // Listen for the message from the popup containing the login response.
+      window.addEventListener("message", function (event) {
+        // Optionally, check event.origin here to validate the sender.
+        const response = event.data;
+        if (response && response.credential) {
+          // Process the credential here.
+          document.getElementById("result").innerText =
+            "Received token: " + response.credential;
+          console.log("Google login response:", response);
+        }
+      });
+    </script>
   </body>
 </html>
