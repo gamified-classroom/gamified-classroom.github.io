@@ -14,7 +14,7 @@ console.log('Supabase Instance: ', database);
 document.addEventListener('DOMContentLoaded', function() {
   // Callback function to handle the credential response from Google
   function handleCredentialResponse(response) {
-    console.log(`Auth code: ${response.code}`)
+    console.log(`Auth code: ${response.access_token}`)
     console.log("Encoded JWT ID token: " + response.credential);
     try {
       const decodedToken = decode(response.credential);
